@@ -17,8 +17,8 @@ class Solution:
                 root.right = cur
         return root
 
-    def getHeight(self, root):
-        max_height = 0
+    def levelOrder(self, root):
+        print_output = [root.data]
         nodes = [root]
         while True:
             new_nodes = []
@@ -30,11 +30,12 @@ class Solution:
 
             nodes = new_nodes
             if nodes:
-                max_height += 1
+                for node in nodes:
+                    print_output.append(node.data)
             else:
                 break
 
-        return max_height
+        print(" ".join(map(str, print_output)))
 
 
 # T = int(input())
@@ -43,23 +44,12 @@ class Solution:
 # for i in range(T):
 #     data = int(input())
 #     root = myTree.insert(root, data)
-# height = myTree.getHeight(root)
-# print(height)
+# myTree.levelOrder(root)
 
-T = 7
+T = 6
 myTree = Solution()
 root = None
-for i in [3, 5, 2, 1, 4, 6, 7]:
+for i in [3, 5, 4, 7, 2, 1]:
     data = i
     root = myTree.insert(root, data)
-height = myTree.getHeight(root)
-print(height)
-
-# T = 9
-# myTree = Solution()
-# root = None
-# for i in [20, 50, 35, 44, 9, 15, 62, 11, 13]:
-#     data = i
-#     root = myTree.insert(root, data)
-# height = myTree.getHeight(root)
-# print(height)
+myTree.levelOrder(root)
